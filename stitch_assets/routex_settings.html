@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RouteX | Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-dim": "#00e2ee",
+                      "primary-fixed-dim": "#00e2ee",
+                      "inverse-primary": "#006a70",
+                      "error-container": "#9f0519",
+                      "surface-container": "#161a1e",
+                      "on-primary-fixed": "#004145",
+                      "surface-container-highest": "#22262b",
+                      "on-secondary": "#44545c",
+                      "surface-container-high": "#1c2024",
+                      "on-primary-fixed-variant": "#006065",
+                      "secondary": "#d4e5ef",
+                      "surface-container-lowest": "#000000",
+                      "on-surface": "#f8f9fe",
+                      "primary-container": "#00f1fe",
+                      "on-tertiary-fixed-variant": "#005762",
+                      "on-error-container": "#ffa8a3",
+                      "on-tertiary-container": "#004d57",
+                      "outline-variant": "#45484c",
+                      "on-secondary-container": "#c2d3dd",
+                      "tertiary-dim": "#00d4ec",
+                      "tertiary-fixed": "#00e3fd",
+                      "outline": "#737679",
+                      "primary-fixed": "#00f1fe",
+                      "surface-variant": "#22262b",
+                      "on-secondary-fixed-variant": "#4e5e66",
+                      "tertiary": "#81ecff",
+                      "surface-tint": "#99f7ff",
+                      "inverse-surface": "#f8f9fe",
+                      "surface-dim": "#0b0e11",
+                      "surface": "#0b0e11",
+                      "on-error": "#490006",
+                      "secondary-fixed": "#d4e5ef",
+                      "on-surface-variant": "#a9abaf",
+                      "on-primary-container": "#00555a",
+                      "tertiary-container": "#00e3fd",
+                      "on-tertiary": "#005762",
+                      "error-dim": "#d7383b",
+                      "secondary-fixed-dim": "#c6d7e1",
+                      "background": "#0b0e11",
+                      "surface-bright": "#282d31",
+                      "on-secondary-fixed": "#324249",
+                      "tertiary-fixed-dim": "#00d4ec",
+                      "secondary-container": "#394951",
+                      "primary": "#99f7ff",
+                      "on-tertiary-fixed": "#003840",
+                      "on-background": "#f8f9fe",
+                      "on-primary": "#005f64",
+                      "surface-container-low": "#101417",
+                      "inverse-on-surface": "#535559",
+                      "secondary-dim": "#c6d7e1",
+                      "error": "#ff716c"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "fontFamily": {
+                      "headline": ["Manrope"],
+                      "body": ["Inter"],
+                      "label": ["Inter"]
+              }
+            },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .glass-sidebar {
+            backdrop-filter: blur(20px);
+        }
+        body {
+            background-color: #0b0e11;
+            color: #f8f9fe;
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, .display-text {
+            font-family: 'Manrope', sans-serif;
+        }
+        .intent-strip {
+            position: relative;
+        }
+        .intent-strip::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #99f7ff;
+        }
+      </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-[#0b0e11] dark:bg-slate-950 border-b border-opacity-15 border-[#45484c]">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black tracking-tighter text-[#00f1fe]">RouteX</span>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-[#a9abaf] hover:text-[#99f7ff] transition-colors" href="#">Dashboard</a>
+<a class="text-[#a9abaf] hover:text-[#99f7ff] transition-colors" href="#">Orders</a>
+<a class="text-[#a9abaf] hover:text-[#99f7ff] transition-colors" href="#">Analytics</a>
+<a class="text-[#00f1fe] border-b-2 border-[#00f1fe] pb-1" href="#">Settings</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="bg-surface-container-lowest border border-outline-variant border-opacity-15 rounded-lg px-3 py-1 flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-48 placeholder-on-surface-variant" placeholder="Search systems..." type="text"/>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-[#161a1e] p-2 rounded-full transition-colors">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-[#161a1e] p-2 rounded-full transition-colors">account_circle</button>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] z-40 flex flex-col w-64 bg-[#101417] backdrop-blur-xl border-r border-opacity-15 border-[#45484c] shadow-2xl shadow-[#99f7ff]/5">
+<div class="p-6">
+<h3 class="font-headline font-bold text-white">Control Center</h3>
+<p class="text-xs text-on-surface-variant uppercase tracking-widest">Precision Logistics</p>
+</div>
+<nav class="flex-1 mt-4 space-y-2">
+<a class="flex items-center gap-3 text-[#a9abaf] pl-6 py-3 hover:bg-[#1c2024] hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 text-[#a9abaf] pl-6 py-3 hover:bg-[#1c2024] hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">local_shipping</span>
+<span class="font-medium">Orders</span>
+</a>
+<a class="flex items-center gap-3 text-[#a9abaf] pl-6 py-3 hover:bg-[#1c2024] hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-medium">Analytics</span>
+</a>
+<a class="flex items-center gap-3 text-[#00f1fe] font-bold border-l-2 border-[#00f1fe] pl-6 py-3 transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-medium">Settings</span>
+</a>
+</nav>
+<div class="p-6">
+<button class="w-full bg-gradient-to-br from-primary-container to-primary-dim text-on-primary font-bold py-3 rounded-lg flex items-center justify-center gap-2 transition-transform active:scale-95 duration-150">
+<span class="material-symbols-outlined">add</span>
+                New Simulation
+            </button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="pl-64 pt-16 min-h-screen pb-20 bg-surface">
+<div class="max-w-6xl mx-auto p-8">
+<!-- Header Section -->
+<div class="mb-12">
+<h1 class="text-5xl font-black tracking-tight mb-2">System Preferences</h1>
+<p class="text-on-surface-variant text-lg">Configure the kinetic parameters of the RouteX engine.</p>
+</div>
+<!-- Bento Grid Settings -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Fleet Configuration -->
+<section class="col-span-12 lg:col-span-8 bg-surface-container rounded-xl overflow-hidden border border-outline-variant border-opacity-15 intent-strip">
+<div class="bg-surface-container-highest p-6">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">hub</span>
+<h2 class="text-xl font-bold">Fleet Configuration</h2>
+</div>
+</div>
+<div class="p-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-2">
+<label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant">Central Warehouse</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">location_on</span>
+<input class="w-full pl-10 bg-surface-container-lowest border border-outline-variant border-opacity-15 rounded-lg py-3 focus:ring-1 focus:ring-primary text-sm" type="text" value="Main Hub Alpha - Berlin"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant">Active Vehicle Count</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">conveyor_belt</span>
+<input class="w-full pl-10 bg-surface-container-lowest border border-outline-variant border-opacity-15 rounded-lg py-3 focus:ring-1 focus:ring-primary text-sm" type="number" value="1280"/>
+</div>
+</div>
+<div class="col-span-full pt-4">
+<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-lg border border-outline-variant border-opacity-10">
+<div>
+<h4 class="font-bold text-primary">Predictive Dispatching</h4>
+<p class="text-sm text-on-surface-variant">Auto-allocate vehicles based on historical peak demand.</p>
+</div>
+<div class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-primary-container transition-colors duration-200 ease-in-out focus:outline-none">
+<span class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-on-primary shadow ring-0 transition duration-200 ease-in-out"></span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Map Preferences -->
+<section class="col-span-12 lg:col-span-4 bg-surface-container rounded-xl overflow-hidden border border-outline-variant border-opacity-15">
+<div class="bg-surface-container-highest p-6">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">map</span>
+<h2 class="text-xl font-bold">Map Preferences</h2>
+</div>
+</div>
+<div class="p-8 space-y-6">
+<div class="space-y-2">
+<label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant">Resolution Grid Size</label>
+<select class="w-full bg-surface-container-lowest border border-outline-variant border-opacity-15 rounded-lg py-3 px-4 focus:ring-1 focus:ring-primary text-sm appearance-none">
+<option>0.5km Ultra-Precision</option>
+<option selected="">1.0km Standard</option>
+<option>5.0km Regional</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant">Heuristic Selector</label>
+<div class="grid grid-cols-2 gap-2">
+<button class="py-2 px-3 text-xs border border-primary text-primary rounded-lg font-bold bg-primary/5">Manhattan</button>
+<button class="py-2 px-3 text-xs border border-outline-variant text-on-surface-variant rounded-lg font-bold hover:border-primary/50 transition-colors">Euclidean</button>
+</div>
+</div>
+<div class="h-32 w-full rounded-lg bg-surface-container-lowest overflow-hidden relative border border-outline-variant border-opacity-15">
+<img class="w-full h-full object-cover opacity-40 grayscale" data-alt="Satellite map view of city streets at night with neon blue light trails representing traffic data" data-location="Berlin" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYH5ShE1mT_J_EXQuHfEZ-0Qi7z6iR1QkrDbCR5BjvxxXIVHZKdSAVkLqxxoZUFr2Iq1MeV5crLiOG0Bp98RZOdDErkcPR5Yyb8LF2Rlhrxq8axZUteg5QTtKFog-k8qadBGlXy-fmeH4wQwlkcbAQ9CIOouyMKdznkRzMNaXXUPQCO5x4-H0VV0GskByJg7ww_1GfMdWI2ShHaA1pz26yVZ4haMFh8_twYVswzhGqOWQDQqZjywIM1kX1aNLxVh5um60iwswFVjdm"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="text-[10px] uppercase tracking-[0.2em] font-bold bg-surface/80 px-2 py-1 rounded">Visualizer Alpha</span>
+</div>
+</div>
+</div>
+</section>
+<!-- AI Model Settings -->
+<section class="col-span-12 lg:col-span-6 bg-surface-container rounded-xl overflow-hidden border border-outline-variant border-opacity-15 intent-strip">
+<div class="bg-surface-container-highest p-6">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">psychology</span>
+<h2 class="text-xl font-bold">AI Intelligence Suite</h2>
+</div>
+</div>
+<div class="p-8 space-y-6">
+<div class="flex items-center justify-between group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center border border-outline-variant border-opacity-10">
+<span class="material-symbols-outlined text-primary text-xl">account_tree</span>
+</div>
+<div>
+<h4 class="font-bold">XGBoost Optimized Flow</h4>
+<p class="text-xs text-on-surface-variant">High-speed gradient boosting for route estimation.</p>
+</div>
+</div>
+<div class="relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-primary-container transition-colors duration-200">
+<span class="translate-x-4 pointer-events-none inline-block h-4 w-4 transform rounded-full bg-on-primary shadow ring-0 transition duration-200"></span>
+</div>
+</div>
+<div class="flex items-center justify-between group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center border border-outline-variant border-opacity-10">
+<span class="material-symbols-outlined text-primary text-xl">auto_awesome</span>
+</div>
+<div>
+<h4 class="font-bold">Gemini 1.5 Pro Integration</h4>
+<p class="text-xs text-on-surface-variant">Natural language commands and reasoning logic.</p>
+</div>
+</div>
+<div class="relative inline-flex h-5 w-9 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-surface-variant transition-colors duration-200">
+<span class="translate-x-0 pointer-events-none inline-block h-4 w-4 transform rounded-full bg-on-surface-variant shadow ring-0 transition duration-200"></span>
+</div>
+</div>
+<div class="pt-4 border-t border-outline-variant border-opacity-10">
+<div class="p-4 bg-primary/5 rounded-lg border border-primary/20 flex gap-4">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">info</span>
+<p class="text-xs leading-relaxed text-primary">Model weights are synchronized daily at 02:00 UTC. Current latency: 14ms.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Notification Settings -->
+<section class="col-span-12 lg:col-span-6 bg-surface-container rounded-xl overflow-hidden border border-outline-variant border-opacity-15">
+<div class="bg-surface-container-highest p-6">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">notifications_active</span>
+<h2 class="text-xl font-bold">Alert Protocols</h2>
+</div>
+</div>
+<div class="p-8 space-y-4">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="p-4 rounded-lg bg-surface-container-low border border-outline-variant border-opacity-10 hover:bg-surface-container-high transition-colors cursor-pointer">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary text-sm">mail</span>
+<span class="text-sm font-bold">Email Digest</span>
+</div>
+<p class="text-[10px] text-on-surface-variant uppercase font-medium">Daily Summary</p>
+</div>
+<div class="p-4 rounded-lg bg-surface-container-low border border-outline-variant border-opacity-10 hover:bg-surface-container-high transition-colors cursor-pointer border-primary/50">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary text-sm">webhook</span>
+<span class="text-sm font-bold">Webhook Stream</span>
+</div>
+<p class="text-[10px] text-primary uppercase font-bold">Active Connection</p>
+</div>
+<div class="p-4 rounded-lg bg-surface-container-low border border-outline-variant border-opacity-10 hover:bg-surface-container-high transition-colors cursor-pointer">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-error text-sm">warning</span>
+<span class="text-sm font-bold">System Alerts</span>
+</div>
+<p class="text-[10px] text-on-surface-variant uppercase font-medium">Critical Only</p>
+</div>
+<div class="p-4 rounded-lg bg-surface-container-low border border-outline-variant border-opacity-10 hover:bg-surface-container-high transition-colors cursor-pointer">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary text-sm">sms</span>
+<span class="text-sm font-bold">SMS Relay</span>
+</div>
+<p class="text-[10px] text-on-surface-variant uppercase font-medium">Inactive</p>
+</div>
+</div>
+</div>
+</section>
+<!-- About Section -->
+<section class="col-span-12 bg-surface-container rounded-xl overflow-hidden border border-outline-variant border-opacity-15">
+<div class="grid grid-cols-1 md:grid-cols-3">
+<div class="p-8 bg-surface-container-highest border-r border-outline-variant border-opacity-10">
+<div class="flex flex-col h-full justify-between">
+<div>
+<span class="text-2xl font-black tracking-tighter text-[#00f1fe] mb-2 block">RouteX</span>
+<p class="text-xs text-on-surface-variant font-medium">Software Version 4.2.0-LTS</p>
+<p class="text-xs text-on-surface-variant font-medium mt-1">Core Engine: QuantumFlow-8</p>
+</div>
+<div class="mt-8">
+<p class="text-sm italic text-on-surface-variant">"Redefining the speed of global transit through kinetic intelligence."</p>
+</div>
+</div>
+</div>
+<div class="col-span-2 p-8 grid grid-cols-1 sm:grid-cols-2 gap-8">
+<div>
+<h4 class="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-4">Engineering Team</h4>
+<ul class="space-y-4">
+<li class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant border-opacity-20 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Portrait of a professional male software architect with glasses in a tech office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXFsGrcKRCXOTmQpjfiLh8K5xfsiHSJVkJHf8ooq1N9bXxgV2RrxXKs-c9yZtcULWgeFzUOn4FFWopJNR6Dx_8D4fBdl2u-KmNczNOXRlhgPUQ1ltp2JiDcki0PzbE72AHsaB-FHY4dhCj1SKZhuivreCf1HZWNQjZM6ZrvLe9V6RFYt3S0d3teskyFTdTLRiZ_oRqsUVN1uiUFEO236NW3_EfMWO1tQjyTDRj0-T5F046HaoxHFb1kSqDCKxLWHSwG186K2vApVE0"/>
+</div>
+<div class="text-sm">
+<p class="font-bold">Elias Vance</p>
+<p class="text-[10px] text-primary">Lead Architect</p>
+</div>
+</li>
+<li class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant border-opacity-20 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Portrait of a female AI researcher with a modern haircut in a bright, clean laboratory environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqT6k9FnscWEyDrq9FKJiU_93bpJAn2ol_z2FZDCRVryOflUIif254Zt1_8RDLyHJdX_ibHsazh_MldR435WP05meMGjUZQsKAvUUEnzEoQ78q65xaNkuKwNLSQMRR_A0GDk275vtLSU9o27Qc8dXNgAfGubbAnK1O-KEm7mlFWHSOJcmvp6RRu4b4NXD1W7rP8dUGVeSRNxr1zOj3qw0qKTbodf4-mDnJITWYTuqPgXwHl9480xofXj7TOo1C5ZNRvUS9pbEV7BcF"/>
+</div>
+<div class="text-sm">
+<p class="font-bold">Sarah Chen</p>
+<p class="text-[10px] text-primary">Head of AI</p>
+</div>
+</li>
+</ul>
+</div>
+<div>
+<h4 class="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-4">Project Info</h4>
+<div class="space-y-4 text-sm">
+<div>
+<p class="text-on-surface-variant text-[10px] uppercase font-bold">License</p>
+<p class="font-medium">Enterprise Tier Active</p>
+</div>
+<div>
+<p class="text-on-surface-variant text-[10px] uppercase font-bold">Support Contact</p>
+<p class="font-medium text-primary">dev-ops@routex.io</p>
+</div>
+<div class="flex gap-4 pt-2">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">description</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">code</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">share</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Action Footer -->
+<div class="mt-12 flex justify-end gap-4">
+<button class="px-8 py-3 rounded-lg font-bold text-on-surface-variant border border-outline-variant border-opacity-20 hover:bg-surface-container-high transition-all">
+                    Reset Defaults
+                </button>
+<button class="px-12 py-3 rounded-lg font-bold bg-gradient-to-br from-primary-container to-primary-dim text-on-primary shadow-lg shadow-primary/10 hover:shadow-primary/20 transition-all active:scale-95">
+                    Deploy Configuration
+                </button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-center items-center h-12 gap-8 bg-[#0b0e11] border-t border-opacity-15 border-[#45484c] shadow-[0_-4px_20px_rgba(153,247,255,0.05)]">
+<a class="text-[#a9abaf] px-3 py-1 flex flex-col items-center" href="#">
+<span class="material-symbols-outlined text-xl">insights</span>
+<span class="text-[8px] uppercase tracking-widest mt-0.5">Live Stats</span>
+</a>
+<a class="bg-[#00f1fe] text-[#005f64] rounded-md px-3 py-1 flex flex-col items-center" href="#">
+<span class="material-symbols-outlined text-xl">settings</span>
+<span class="text-[8px] uppercase tracking-widest mt-0.5 font-bold">Settings</span>
+</a>
+<a class="text-[#a9abaf] px-3 py-1 flex flex-col items-center" href="#">
+<span class="material-symbols-outlined text-xl">terminal</span>
+<span class="text-[8px] uppercase tracking-widest mt-0.5">AI Log</span>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RouteX | Logistics Data Stream</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-dim": "#00e2ee",
+                      "primary-fixed-dim": "#00e2ee",
+                      "inverse-primary": "#006a70",
+                      "error-container": "#9f0519",
+                      "surface-container": "#161a1e",
+                      "on-primary-fixed": "#004145",
+                      "surface-container-highest": "#22262b",
+                      "on-secondary": "#44545c",
+                      "surface-container-high": "#1c2024",
+                      "on-primary-fixed-variant": "#006065",
+                      "secondary": "#d4e5ef",
+                      "surface-container-lowest": "#000000",
+                      "on-surface": "#f8f9fe",
+                      "primary-container": "#00f1fe",
+                      "on-tertiary-fixed-variant": "#005762",
+                      "on-error-container": "#ffa8a3",
+                      "on-tertiary-container": "#004d57",
+                      "outline-variant": "#45484c",
+                      "on-secondary-container": "#c2d3dd",
+                      "tertiary-dim": "#00d4ec",
+                      "tertiary-fixed": "#00e3fd",
+                      "outline": "#737679",
+                      "primary-fixed": "#00f1fe",
+                      "surface-variant": "#22262b",
+                      "on-secondary-fixed-variant": "#4e5e66",
+                      "tertiary": "#81ecff",
+                      "surface-tint": "#99f7ff",
+                      "inverse-surface": "#f8f9fe",
+                      "surface-dim": "#0b0e11",
+                      "surface": "#0b0e11",
+                      "on-error": "#490006",
+                      "secondary-fixed": "#d4e5ef",
+                      "on-surface-variant": "#a9abaf",
+                      "on-primary-container": "#00555a",
+                      "tertiary-container": "#00e3fd",
+                      "on-tertiary": "#005762",
+                      "error-dim": "#d7383b",
+                      "secondary-fixed-dim": "#c6d7e1",
+                      "background": "#0b0e11",
+                      "surface-bright": "#282d31",
+                      "on-secondary-fixed": "#324249",
+                      "tertiary-fixed-dim": "#00d4ec",
+                      "secondary-container": "#394951",
+                      "primary": "#99f7ff",
+                      "on-tertiary-fixed": "#003840",
+                      "on-background": "#f8f9fe",
+                      "on-primary": "#005f64",
+                      "surface-container-low": "#101417",
+                      "inverse-on-surface": "#535559",
+                      "secondary-dim": "#c6d7e1",
+                      "error": "#ff716c"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "fontFamily": {
+                      "headline": ["Manrope"],
+                      "body": ["Inter"],
+                      "label": ["Inter"]
+              }
+            },
+          },
+        }
+    </script>
+<style type="text/tailwindcss">
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .text-glow-primary {
+            text-shadow: 0 0 15px rgba(0, 241, 254, 0.6);
+        }
+        .bg-kinetic-gradient {
+            background: linear-gradient(135deg, #00f1fe 0%, #00e2ee 100%);
+        }
+        .data-stream-connector {
+            background: repeating-linear-gradient(90deg, transparent, transparent 10px, #00f1fe20 10px, #00f1fe20 20px);
+        }
+        .modular-block {
+            @apply border-x border-outline-variant/10 bg-surface-container-lowest relative;
+        }
+        .modular-block::after {
+            content: '';
+            @apply absolute left-1/2 -bottom-4 w-px h-8 bg-gradient-to-b from-primary/50 to-transparent z-20;
+        }
+        .neural-bg {
+            background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC8fm-TrH_HzI5gw4qCWKxlajAIq5vlctF7VpbpJKke1Yoc9X5D_4IrDtwh3oTtw-pjgdG3Iswzt4AvDHWGhpTEdFulM6oqhLOxd8cN5mT_CBx39HHUIgl-uEOMdOKXaBAWYjmTz2xGTmc9Dl9psSWood6dPecLnxqUdaMGBt9y3yyVzn8CuudxaYmii-Qzn4SCvDSuBQHf_bsXxX6IiFeXkV78xEMjhBKDGn90fluQklSfJ13iGetqiRur5kLNTw_bnfSwIhuW9ukt');
+            background-size: cover;
+            background-position: center;
+            filter: saturate(0) brightness(0.4);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-surface/80 backdrop-blur-md border-b border-outline-variant/10">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black tracking-tighter text-primary-container font-headline">RouteX</span>
+<div class="hidden md:flex gap-6 items-center">
+<a class="text-primary-container border-b-2 border-primary-container pb-1 font-medium transition-colors" href="#">Stream</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Core</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Nodes</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 px-3 py-1 bg-surface-container rounded-full border border-outline-variant/20">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+<span class="text-[10px] font-bold uppercase tracking-[0.2em] text-primary">Operational</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:bg-surface-container p-2 rounded-full transition-colors">account_circle</span>
+</div>
+</nav>
+<main>
+<section class="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
+<div class="absolute inset-0 z-0 neural-bg"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-surface/20 via-surface/40 to-surface"></div>
+<div class="container mx-auto px-6 relative z-10 text-center">
+<div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-surface/40 border border-primary/20 backdrop-blur-xl mb-8">
+<span class="text-xs font-bold uppercase tracking-widest text-primary">Initializing Neural Protocol</span>
+</div>
+<h1 class="text-6xl md:text-8xl font-black font-headline leading-none tracking-tighter mb-6">
+                Revolutionizing <br/><span class="text-primary-container text-glow-primary">Last-Mile</span> Delivery
+            </h1>
+<p class="text-xl text-on-surface-variant max-w-2xl mx-auto mb-10 leading-relaxed">
+                Efficiency at your fingertips. Harness the power of A* Search and XGBoost ML to transform static routes into dynamic kinetic logic.
+            </p>
+<div class="flex justify-center gap-6">
+<button class="bg-kinetic-gradient text-on-primary px-10 py-5 rounded-lg font-black text-xl hover:scale-95 transition-transform flex items-center gap-3 shadow-[0_0_30px_rgba(0,226,238,0.3)]">
+                    Get Started
+                    <span class="material-symbols-outlined">bolt</span>
+</button>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-surface-container-lowest to-transparent"></div>
+</section>
+<div class="max-w-6xl mx-auto space-y-0">
+<section class="modular-block p-12 lg:p-20">
+<div class="grid lg:grid-cols-12 gap-12 items-start">
+<div class="lg:col-span-4 sticky top-24">
+<h2 class="text-4xl font-black font-headline mb-6 tracking-tighter">The Logistic Bottleneck</h2>
+<p class="text-on-surface-variant italic mb-8">Traditional delivery systems are failing in an era of instant demand. We solve the chaos of the last mile.</p>
+<div class="h-1 w-24 bg-primary-container"></div>
+</div>
+<div class="lg:col-span-8 space-y-6">
+<div class="p-8 bg-surface-container-low border border-outline-variant/10 rounded-xl flex gap-8 items-center">
+<div class="flex-shrink-0 w-32 h-20 bg-surface-container-highest rounded border border-outline-variant/20 relative overflow-hidden">
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-full h-[2px] bg-error/30"></div>
+<div class="absolute left-1/4 w-1 h-8 bg-error"></div>
+</div>
+</div>
+<div>
+<h3 class="text-xl font-bold mb-2 text-primary">Inaccurate delivery times</h3>
+<p class="text-sm text-on-surface-variant">Ghost ETAs damage customer trust. Our models account for urban friction in real-time.</p>
+</div>
+</div>
+<div class="p-8 bg-surface-container-low border border-outline-variant/10 rounded-xl flex gap-8 items-center">
+<div class="flex-shrink-0 w-32 h-20 bg-surface-container-highest rounded border border-outline-variant/20 relative overflow-hidden">
+<div class="absolute inset-0 p-2">
+<div class="w-full h-full border-2 border-dashed border-primary/20 rounded-lg flex items-center justify-center">
+<div class="w-2 h-2 bg-primary rounded-full animate-ping"></div>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-xl font-bold mb-2 text-primary">Inefficient routing</h3>
+<p class="text-sm text-on-surface-variant">Static mapping ignores the pulse of the city. We optimize for every turn and traffic light.</p>
+</div>
+</div>
+<div class="p-8 bg-surface-container-low border border-outline-variant/10 rounded-xl flex gap-8 items-center">
+<div class="flex-shrink-0 w-32 h-20 bg-surface-container-highest rounded border border-outline-variant/20 relative overflow-hidden">
+<div class="absolute bottom-0 left-0 w-full h-1/2 bg-primary/10"></div>
+<div class="absolute bottom-0 left-0 w-full h-1/4 bg-primary/20"></div>
+</div>
+<div>
+<h3 class="text-xl font-bold mb-2 text-primary">High operational costs</h3>
+<p class="text-sm text-on-surface-variant">Fuel and time waste eat margins. Precision routing saves 22% on average fuel consumption.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="modular-block p-12 lg:p-20 overflow-hidden">
+<div class="text-center mb-16">
+<h2 class="text-5xl font-black font-headline tracking-tighter mb-4">The Process</h2>
+<p class="text-primary-container font-bold uppercase tracking-widest text-sm">Synchronized Logic / 01-04</p>
+</div>
+<div class="relative py-12">
+<div class="absolute top-1/2 left-0 w-full h-px bg-outline-variant/30 -translate-y-1/2 hidden lg:block"></div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 relative z-10">
+<div class="bg-surface-container-high p-6 border border-outline-variant/20 rounded-none relative">
+<div class="w-12 h-12 bg-primary text-on-primary flex items-center justify-center font-black mb-6">01</div>
+<h4 class="text-lg font-bold mb-3">Enter details</h4>
+<p class="text-xs text-on-surface-variant mb-6">Inject parcel data, destination parameters, and driver availability into the core.</p>
+<div class="h-20 w-full bg-surface-container-lowest border border-outline-variant/10 rounded flex items-center justify-center opacity-50">
+<span class="material-symbols-outlined text-primary/50">data_array</span>
+</div>
+</div>
+<div class="bg-surface-container-high p-6 border border-outline-variant/20 rounded-none relative">
+<div class="w-12 h-12 bg-primary text-on-primary flex items-center justify-center font-black mb-6">02</div>
+<h4 class="text-lg font-bold mb-3">Receive optimized route</h4>
+<p class="text-xs text-on-surface-variant mb-6">Our A* engine calculates millions of permutations to find the peak efficiency path.</p>
+<div class="h-20 w-full bg-surface-container-lowest border border-outline-variant/10 rounded flex items-center justify-center opacity-50">
+<span class="material-symbols-outlined text-primary/50">account_tree</span>
+</div>
+</div>
+<div class="bg-surface-container-high p-6 border border-outline-variant/20 rounded-none relative">
+<div class="w-12 h-12 bg-primary text-on-primary flex items-center justify-center font-black mb-6">03</div>
+<h4 class="text-lg font-bold mb-3">Track real-time</h4>
+<p class="text-xs text-on-surface-variant mb-6">Live telemetry provides a 1:1 digital twin of your fleet operations on the ground.</p>
+<div class="h-20 w-full bg-surface-container-lowest border border-outline-variant/10 rounded flex items-center justify-center opacity-50">
+<span class="material-symbols-outlined text-primary/50">radar</span>
+</div>
+</div>
+<div class="bg-surface-container-high p-6 border border-outline-variant/20 rounded-none relative">
+<div class="w-12 h-12 bg-primary text-on-primary flex items-center justify-center font-black mb-6">04</div>
+<h4 class="text-lg font-bold mb-3">Analyze metrics</h4>
+<p class="text-xs text-on-surface-variant mb-6">Post-trip AI summaries reveal hidden patterns to further sharpen future deliveries.</p>
+<div class="h-20 w-full bg-surface-container-lowest border border-outline-variant/10 rounded flex items-center justify-center opacity-50">
+<span class="material-symbols-outlined text-primary/50">analytics</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="modular-block p-12 lg:p-20">
+<div class="flex justify-between items-end mb-16 border-b border-outline-variant/10 pb-8">
+<div>
+<h2 class="text-4xl font-extrabold font-headline mb-2">Advanced Capability Stack</h2>
+<p class="text-on-surface-variant">Precision engineering for high-velocity logistics operators.</p>
+</div>
+<div class="text-primary-container font-mono text-sm">[ GRID_SYSTEM_ACTIVE ]</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-outline-variant/10 border border-outline-variant/10">
+<div class="bg-surface-container-lowest p-8 group hover:bg-surface-container-low transition-colors">
+<div class="mb-6 h-12 flex items-end">
+<div class="w-full h-1 bg-primary/20 relative">
+<div class="absolute top-0 left-0 h-full w-1/3 bg-primary"></div>
+</div>
+</div>
+<h4 class="text-xl font-bold mb-3">Real-time re-routing</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">Instant path correction based on sudden road closures or weather shifts.</p>
+</div>
+<div class="bg-surface-container-lowest p-8 group hover:bg-surface-container-low transition-colors">
+<div class="mb-6 h-12 flex items-center">
+<div class="flex gap-1 items-end h-8">
+<div class="w-2 h-4 bg-primary/40"></div>
+<div class="w-2 h-6 bg-primary/60"></div>
+<div class="w-2 h-8 bg-primary"></div>
+<div class="w-2 h-5 bg-primary/40"></div>
+</div>
+</div>
+<h4 class="text-xl font-bold mb-3">ETA prediction</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">XGBoost-powered forecasting with 99.2% accuracy in urban environments.</p>
+</div>
+<div class="bg-surface-container-lowest p-8 group hover:bg-surface-container-low transition-colors">
+<div class="mb-6 h-12 flex items-center justify-center">
+<div class="w-full border-t border-primary/20 relative">
+<div class="absolute -top-1 left-1/2 w-2 h-2 rounded-full bg-primary -translate-x-1/2"></div>
+</div>
+</div>
+<h4 class="text-xl font-bold mb-3">AI explanations</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">Human-readable rationales for every routing decision made by the system.</p>
+</div>
+<div class="bg-surface-container-lowest p-8 group hover:bg-surface-container-low transition-colors">
+<div class="mb-6 h-12">
+<div class="w-10 h-10 border border-primary/40 rotate-45 flex items-center justify-center">
+<div class="w-4 h-4 bg-primary"></div>
+</div>
+</div>
+<h4 class="text-xl font-bold mb-3">3D visualization</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">Volumetric mapping of cityscapes for precise multi-story delivery planning.</p>
+</div>
+<div class="bg-surface-container-lowest p-8 group hover:bg-surface-container-low transition-colors">
+<div class="mb-6 h-12 flex items-center">
+<div class="flex flex-wrap gap-1 w-24">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<div class="w-2 h-2 rounded-full bg-primary/20"></div>
+<div class="w-2 h-2 rounded-full bg-primary/20"></div>
+<div class="w-2 h-2 rounded-full bg-primary/20"></div>
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+</div>
+</div>
+<h4 class="text-xl font-bold mb-3">Multi-stop optimization</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">Solve the complex 'Traveling Salesperson' problem in milliseconds for 100+ stops.</p>
+</div>
+<div class="bg-surface-container-lowest p-8 group hover:bg-surface-container-low transition-colors">
+<div class="mb-6 h-12 flex items-center">
+<div class="w-8 h-8 rounded-full border-2 border-primary border-t-transparent animate-spin"></div>
+</div>
+<h4 class="text-xl font-bold mb-3">Disruption detection</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">Early warning system for anomalies in delivery patterns and vehicle health.</p>
+</div>
+</div>
+</section>
+<section class="modular-block p-12 lg:p-20">
+<div class="grid lg:grid-cols-2 gap-20">
+<div>
+<h2 class="text-4xl font-black font-headline mb-8">Built on Pure Precision</h2>
+<p class="text-on-surface-variant mb-12 leading-relaxed">Our architecture doesn't just process data; it understands the physics of movement. By combining classical search algorithms with modern generative AI, we create a resilient delivery engine.</p>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-6 bg-surface-container border border-outline-variant/10">
+<div class="text-4xl font-black text-primary mb-2">99.9%</div>
+<div class="text-[10px] uppercase tracking-widest text-on-surface-variant">System Uptime</div>
+</div>
+<div class="p-6 bg-surface-container border border-outline-variant/10">
+<div class="text-4xl font-black text-primary mb-2">&lt;50ms</div>
+<div class="text-[10px] uppercase tracking-widest text-on-surface-variant">Compute Latency</div>
+</div>
+</div>
+</div>
+<div class="space-y-px bg-outline-variant/10">
+<div class="p-6 bg-surface-container-low flex justify-between items-center group cursor-crosshair">
+<div>
+<h5 class="font-bold">A* Search Optimization</h5>
+<p class="text-xs text-on-surface-variant">Heuristic-driven pathfinding</p>
+</div>
+<div class="text-primary-container font-bold">A*</div>
+</div>
+<div class="p-6 bg-surface-container-low flex justify-between items-center group cursor-crosshair">
+<div>
+<h5 class="font-bold">XGBoost ML Models</h5>
+<p class="text-xs text-on-surface-variant">Gradient boosted trees</p>
+</div>
+<div class="text-primary-container font-bold">XG</div>
+</div>
+<div class="p-6 bg-surface-container-low flex justify-between items-center group cursor-crosshair">
+<div>
+<h5 class="font-bold">Gemini LLM Integration</h5>
+<p class="text-xs text-on-surface-variant">Semantic reasoning engine</p>
+</div>
+<div class="text-primary-container font-bold">GM</div>
+</div>
+</div>
+</div>
+</section>
+<section class="modular-block p-12 lg:p-32 text-center">
+<div class="max-w-3xl mx-auto py-20 px-12 bg-kinetic-gradient rounded-none relative overflow-hidden group">
+<div class="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity">
+<img alt="Pattern" class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIRuSsiBD-1vtpFb2TmBWOusvoSW9maVnncayCvBRAOtC4Bli_SwnwUibTo93fMhGr0a_0Afl0H__YJ_hvAENw3_LeVjLercv9fxbWW1tFlHJHB0KuplvJ7QMyjfLW5u7o5XFrTQ2IGnNyoC8yGFr_darzajBUUbx_6iD0xiV91avMoRNFQ7YSvlG8DE4yL2CdkWeVrD845Okb4y0CIxguqJq4kPtfbmiDtbr25LXNhsSJYbCjJqOSbliwkz8zvUnszDwDxe7P_q55"/>
+</div>
+<div class="relative z-10">
+<h2 class="text-4xl lg:text-6xl font-black font-headline text-on-primary mb-6 tracking-tighter uppercase">Ready to optimize?</h2>
+<p class="text-on-primary/80 text-lg mb-10 max-w-xl mx-auto">Join the next generation of logistics providers. Deploy the RouteX engine in minutes.</p>
+<button class="bg-on-primary text-primary-container px-12 py-5 font-black text-xl hover:bg-on-surface hover:text-surface-container-lowest transition-all shadow-2xl tracking-widest">
+                        LAUNCH DASHBOARD
+                    </button>
+</div>
+</div>
+</section>
+</div>
+<footer class="bg-surface-container-lowest border-t border-outline-variant/10 py-16 px-6">
+<div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
+<div>
+<span class="text-3xl font-black tracking-tighter text-primary-container font-headline mb-4 block">RouteX</span>
+<p class="text-on-surface-variant text-sm font-medium">Precision Logistic Intelligence</p>
+</div>
+<div class="flex flex-col gap-4 text-xs font-bold tracking-[0.3em] uppercase">
+<a class="hover:text-primary transition-colors" href="#">Privacy_Protocol</a>
+<a class="hover:text-primary transition-colors" href="#">System_Terms</a>
+<a class="hover:text-primary transition-colors" href="#">API_Endpoint</a>
+</div>
+<div class="md:text-right">
+<p class="text-xs text-on-surface-variant font-mono">NODE: RouteX_Team @ Tech_Institute</p>
+<p class="text-[10px] text-outline mt-2 uppercase tracking-widest">© 2024 KINETIC_SYSTEMS // ALL RIGHTS RESERVED</p>
+</div>
+</div>
+</footer>
+</main>
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-center items-center h-16 gap-8 bg-surface-container-lowest border-t border-outline-variant/20">
+<div class="text-primary-container px-3 py-1 flex flex-col items-center">
+<span class="material-symbols-outlined text-xl">insights</span>
+<span class="text-[8px] font-bold uppercase tracking-tighter mt-1">STREAM</span>
+</div>
+<div class="text-on-surface-variant px-3 py-1 flex flex-col items-center">
+<span class="material-symbols-outlined text-xl">terminal</span>
+<span class="text-[8px] font-bold uppercase tracking-tighter mt-1">LOGS</span>
+</div>
+</nav>
+
+</body></html>
